@@ -8,7 +8,7 @@ export default function Cart({ open, onOpenChange }) {
   const onClose = () => onOpenChange(false);
 
   const handleWhatsAppCheckout = () => {
-    const phoneNumber = "971562886853"; // Replace with your actual WhatsApp number
+    const phoneNumber = "971582987028"; // Replace with your actual WhatsApp number
     
     // Create the message with cart items
     let message = "🛒Flyer Order Details:\n\n";
