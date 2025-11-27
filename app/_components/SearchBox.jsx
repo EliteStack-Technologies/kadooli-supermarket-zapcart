@@ -1,7 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 import { FiSearch } from "react-icons/fi";
-
+import logo from '../../public/logo.svg';
 export default function SearchBox({ products, onSelect }) {
   const [query, setQuery] = useState("");
 
@@ -14,7 +15,8 @@ const filtered = query
     )
   : [];
   return (
-    <div className="pt-5 px-5 pb-3 sticky bg-white z-40 top-0">
+    <div className=" px-5  sticky bg-white z-40 top-0 flex items-center gap-5 shadow">
+      <Image src={logo} alt="logo" className="w-[150px]"/>
  <div className="border border-gray-400 rounded-md w-full px-2 py-1 flex items-center gap-2">
   <FiSearch className="text-gray-800 text-lg" />
   <input
@@ -28,7 +30,7 @@ const filtered = query
 
 
       {query && (
-        <div className="absolute w-full bg-white border rounded-md shadow-md mt-1 z-50 max-h-64 overflow-y-auto">
+        <div className="absolute w-full bg-white top-24 left-0  border rounded-md shadow-md mt-1 z-50 max-h-64 overflow-y-auto">
           {filtered.length === 0 ? (
             <p className="p-2 text-sm text-gray-600">No products found</p>
           ) : (

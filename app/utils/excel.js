@@ -21,3 +21,41 @@ export const readExcelFile = async () => {
     return [];
   }
 };
+
+export const getCategoriesFromExcel = async () => {
+  try {
+    const products = await readExcelFile();
+    
+    // Extract unique categories
+    const categoriesMap = new Map();
+    
+    products.forEach((product) => {
+      if (product.category && product.category.trim()) {
+        const categoryName = product.category.trim();
+        if (!categoriesMap.has(categoryName)) {
+          // Create slug from category name
+          const slug = categoryName
+            .toLowerCase()
+            .replace(/&/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9-]/g, '');
+          
+          // Use the product's image for category display
+          const image = product.category_img 
+          
+          categoriesMap.set(categoryName, {
+            name: categoryName,
+            slug: slug,
+            image: image,
+          });
+        }
+      }
+    });
+    
+    const categoryList = Array.from(categoriesMap.values());
+    return categoryList;
+  } catch (error) {
+    console.error("Error getting categories:", error);
+    return [];
+  }
+};

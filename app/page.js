@@ -1,11 +1,13 @@
-import { readExcelFile } from "./utils/excel";
+import { readExcelFile, getCategoriesFromExcel } from "./utils/excel";
 import HomeClient from "./_components/HomeClient";
 
 export default async function Home() {
   let excelData = [];
+  let categories = [];
 
   try {
     excelData = await readExcelFile();
+    categories = await getCategoriesFromExcel();
   } catch (error) {
     console.error("Excel Read Error:", error);
   }
@@ -23,6 +25,7 @@ export default async function Home() {
       page1={groupedByPage["1"] || []}
       page2={groupedByPage["2"] || []}
       page3={groupedByPage["3"] || []}
+      categories={categories}
     />
   );
 }

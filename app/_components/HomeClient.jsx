@@ -7,8 +7,9 @@ import CTASection from "./CTASection";
 import SearchBox from "./SearchBox";
 import ProductModal from "./ProductModal";
 import ProductCard from "./ProductList";
+import Categories from "./Categories";
 
-export default function HomeClient({ excelData, page1, page2, page3 }) {
+export default function HomeClient({ excelData, page1, page2, page3, categories }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
@@ -18,7 +19,9 @@ export default function HomeClient({ excelData, page1, page2, page3 }) {
         onSelect={(item) => setSelectedProduct(item)}
       />
 
+      <Categories categories={categories} />
       <Banner />
+
 
       <h2 className="text-black mt-5 md:mt-10 md:mb-5 md:text-4xl text-lg font-extrabold pl-5">
         Best Deals
